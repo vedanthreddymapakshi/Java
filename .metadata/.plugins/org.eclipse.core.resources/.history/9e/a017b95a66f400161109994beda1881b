@@ -1,0 +1,94 @@
+ package homework2;
+import java.io.*;
+import java.util.*;
+
+public class one {
+	
+	public static void main(String args[])
+	{
+		Scanner in=new Scanner(System.in);
+		
+		int number=0;
+		int times=0;
+		number=in.nextInt();
+		int testlength=0;
+		int markerlength=0;
+		
+		testlength=in.nextInt();
+		markerlength=in.nextInt();
+		String marker="";
+		String test="";
+		
+		test=in.next();
+		marker=in.next();
+		String []muts=new String[100];
+		
+		for(int i=0;i<muts.length;i++) //initialize array to NULL
+		{
+			muts[i]="";
+		}
+		
+		char [] tempp=marker.toCharArray();
+		int begin=0;
+		int end=tempp.length-1;
+		char tempc;
+		while(end>begin) //reverse the string
+		{
+			tempc=tempp[begin];
+			tempp[begin]=tempp[end];
+			tempp[end]=tempc;
+			end--;
+			begin++;
+		}
+		
+		muts[0]=new String(tempp); //store first reversed whole string
+		
+		/*int x=0;
+		while(x+1<=markerlength-1)
+		{
+			String temp=marker;
+			String temp2=" ";
+			char []c=temp.toCharArray();
+			char t=' ';
+			t=c[x];
+			c[x]=c[x+1];
+			c[x+1]=t;
+			temp2=new String(c);
+			muts[x+1]=temp2;
+			x++;
+		}
+		*/
+		
+		for(int k=0;k<=markerlength-2;k++) //switching letters
+		{
+			int i=0;
+			int j=1;
+			int jj=j;
+			while(jj<=markerlength)
+			{
+				String temp=marker;
+				String temp2=" ";
+				char []c=temp.toCharArray();
+				char t=' ';
+				t=c[i];
+				c[i]=c[jj];
+				c[jj]=t;
+				temp2=new String(c);
+				muts[j]=temp2;
+				i++;
+				jj++;
+			}
+			j++;			
+		}
+		
+		for(int i=0;i<muts.length;i++)
+		{
+			if(muts[i]!="")
+				System.out.println(muts[i]);
+			else
+				break;
+		}
+	}
+}
+
+		

@@ -1,0 +1,21 @@
+package testing;
+
+public class tt {
+	public static void main(String args[])
+	{
+		int []a={5,4,3,2,1};
+		int lhs=9;
+		int rhs=3;
+		scram(list,lhs,rhs);
+		System.out.println(lhs+" "+rhs+ " "+ a[3]);
+		
+	}
+	
+	public static void scram(int []a,int lhs, int rhs)
+	{
+		a[rhs]=lhs;
+		lhs=a[1];
+		rhs=a[a.length-1];
+		System.out.println(lhs+" "+rhs+ " "+ a[3]);
+	}
+}

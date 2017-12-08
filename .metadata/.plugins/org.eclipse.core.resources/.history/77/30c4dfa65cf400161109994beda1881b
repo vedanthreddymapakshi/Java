@@ -1,0 +1,35 @@
+package homework2;
+import java.io.*;
+import java.util.*;
+
+public class one {
+	
+	public static void main(String args[])
+	{
+		Scanner in=new Scanner(System.in);
+		
+		int number=0;
+		int times=0;
+		number=in.nextInt();
+		int testlength=0;
+		int markerlength=0;
+		
+		testlength=in.nextInt();
+		markerlength=in.nextInt();
+		
+		String test="";
+		String marker="";
+		
+		while(times<number)
+		{
+			test=in.next();
+			marker=in.next();
+			String str="";
+			for(int i=0;i<testlength;i++)
+			{
+				   
+			}
+		}
+	}
+ 
+}

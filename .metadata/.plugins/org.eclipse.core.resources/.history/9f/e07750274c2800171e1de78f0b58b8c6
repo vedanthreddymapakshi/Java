@@ -1,0 +1,64 @@
+package fundango;
+
+
+public class menu 
+{
+
+	public menu()
+	{
+			
+	}
+	//main menu
+	public void mainMenu()
+	{
+		System.out.println("Welcome to Fundango!");
+		
+		System.out.println("1. Create Account");
+		System.out.println("2. Log in");
+		System.out.println("3. Exit");
+		
+		//give options for log in
+		//create account
+		//exit
+		
+		//ask for choice
+	}
+	
+	public void movieMenu()
+	{
+		//display list of movies with rating
+		//access movie list or array
+		//ask to pick movie
+		//then call movie object corresponding with user choice
+		
+	}
+	 
+	public void custSort()
+	{
+		System.out.println("Enter a field to sort by: ");
+		System.out.println("1: Username");
+		System.out.println("2: Password");
+		System.out.println("3: First Name");
+		System.out.println("4: Last Name");
+		System.out.println("5: Email");
+		System.out.println("Enter your selection: ");
+	}
+	
+	public void adminmenu()
+	{
+		System.out.println("Hello Admin!");
+		System.out.println("1. Display Customers");
+		System.out.println("2: Add Customers");
+		System.out.println("3: Delete Customers");
+		System.out.println("4: Update Customers");
+		System.out.println("5: Sort Customers");
+		System.out.println("6. Display Movies");
+		System.out.println("7: Add Movies");
+		System.out.println("8: Delete Movies");
+		System.out.println("9: Update Movies");
+		System.out.println("10: Sort Movies");
+		System.out.println("11. Exit");
+		
+	}
+}
+

@@ -1,0 +1,105 @@
+package projectmain;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JPasswordField;
+
+public class login {
+
+	private JFrame frame;
+	private JTextField textField;
+	private JTextField textField_1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void loginpage() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					login window = new login();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public login() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblUsername = new JLabel("USERNAME");
+		lblUsername.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		lblUsername.setBounds(69, 55, 74, 14);
+		frame.getContentPane().add(lblUsername);
+		
+		textField = new JTextField();
+		textField.setBounds(153, 52, 86, 20);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblPassword = new JLabel("PASSWORD");
+		lblPassword.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		lblPassword.setBounds(69, 112, 74, 14);
+		frame.getContentPane().add(lblPassword);
+		
+		JButton btnLogin = new JButton("LOGIN");
+		btnLogin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String username="";
+				String password="";
+				username=textField.getText();
+				password=textField_1.getText();
+				System.out.println(username);
+				System.out.println(password);
+				
+			}
+		});
+		btnLogin.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		btnLogin.setBounds(153, 177, 89, 23);
+		frame.getContentPane().add(btnLogin);
+		
+		JLabel lblFundangoo = new JLabel("FUNDANGOO!");
+		lblFundangoo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
+		lblFundangoo.setBounds(92, 11, 223, 33);
+		frame.getContentPane().add(lblFundangoo);
+		
+		JButton btnGoBack = new JButton("Go back");
+		btnGoBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				startpage s=new startpage();
+				s.startthepage();
+			}
+		});
+		btnGoBack.setBounds(324, 227, 89, 23);
+		frame.getContentPane().add(btnGoBack);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(153, 109, 86, 20);
+		frame.getContentPane().add(textField_1);
+		textField_1.setColumns(10);
+	}
+}

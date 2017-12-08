@@ -1,0 +1,62 @@
+package fundango;
+import java.io.*;
+import java.sql.SQLException;
+import java.util.*;
+
+public class main {
+	public static void main(String args[])throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
+	{
+		System.out.println("Welcome to Fundango");
+		Customers c=new Customers();
+		menu m=new menu();
+		Scanner in=new Scanner(System.in);
+		int choice=0;
+		
+		while(choice!=3)
+		{
+			m.mainMenu();
+			choice=in.nextInt();
+			
+			if(choice==1)
+			{
+				c.newAcc();
+			}
+			
+			else if(choice==2)
+			{
+				c.login();
+				if(c.adminCheck()==true)
+				{
+					int adminchoice=0;
+					while(adminchoice!=11)
+					{
+						m.adminmenu();
+						adminchoice=in.nextInt();
+						if(adminchoice==1)
+						{
+							c.dispCust();
+						}
+						else if(adminchoice==2)
+						{
+							c.newAcc();
+						}
+						else if(adminchoice==3)
+						{
+							c.delCust();
+						}
+						else if(adminchoice==4)
+						{
+							c.updateCust();
+						}
+						else if(adminchoice==5)
+						{
+							c.sortCust();
+						}
+					}
+				}
+					
+			}
+		}
+		
+	}
+}

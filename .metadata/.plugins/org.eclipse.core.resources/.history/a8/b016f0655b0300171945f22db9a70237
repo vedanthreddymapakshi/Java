@@ -1,0 +1,19 @@
+package testing;
+import java.util.*;
+
+public class tt {
+	public static void main(String args[])
+	{
+		int s=1; double avg=0;
+		while(s<=5)
+		{
+			Scanner in=new Scanner(System.in);
+			int n=in.nextInt();
+			
+			avg+=n;
+			avg=avg/s;
+			System.out.println(avg);
+		}
+	}
+		
+}

@@ -1,0 +1,22 @@
+package testing;
+
+public class tt {
+	public static void main(String args[])
+	{
+		int x=4;
+		while(x<=8)
+		{
+			for(int y=x;y>1;y=y-1)
+			{
+				if(y%2==0)
+					System.out.print("x");
+				else
+					System.out.print("y");
+			}
+			
+			System.out.println();
+			x=x+1;
+		}
+	}
+		
+}

@@ -1,0 +1,113 @@
+ package homework2;
+import java.io.*;
+import java.util.*;
+
+public class one {
+	
+	public static void main(String args[])
+	{
+		Scanner in=new Scanner(System.in);
+		
+		int count=0;
+		int number=0;
+		int times=0;
+		number=in.nextInt();
+		int testlength=0;
+		int markerlength=0;
+		while(times<number)
+		{
+			testlength=in.nextInt();
+			markerlength=in.nextInt();
+			String marker="";
+			String test="";
+			String ogmarker="";
+			
+			test=in.next();
+			marker=in.next();
+			ogmarker=marker;
+			
+			String []muts=new String[200];
+			int mutcount=1;
+			
+			for(int x=0;x<200;x++) //initiliaze the array
+			{
+				muts[x]="";
+			}
+			muts[0]=ogmarker;
+			
+			for(int k=1;k<markerlength;k++)
+			{
+				int i=0; 
+				while(i+k<markerlength)
+				{
+					int j=i+k;
+					String first="";
+					String flip="";
+					String last="";
+					String temp="";
+					
+					if(i==0) //if start is start
+					{
+						first="";
+						for(int x=j;x>=i;x--)
+						{
+							flip=flip+marker.charAt(x);
+						}
+						
+						for(int x=j+1;x<markerlength;x++)
+						{
+							last=last+marker.charAt(x);
+						}
+						
+					}
+					else //if start is not start
+					{
+						for(int x=0;x<i;x++)
+						{
+							first=first+marker.charAt(x);
+						}
+						
+						for(int x=j;x>=i;x--)
+						{
+							flip=flip+marker.charAt(x);
+						}
+						
+						for(int x=j+1;x<markerlength;x++)
+						{
+							last=last+marker.charAt(x);
+						}
+					}
+					temp=first+flip+last;
+					muts[mutcount]=temp;
+					mutcount++;
+					i++;
+				}
+					
+			}
+			
+			int i=0;
+			int j=markerlength;
+			while(j<testlength)
+			{
+				String temp="";
+				for(int x=i;x<=j;x++)
+				{
+					temp=temp+test.charAt(x);
+				}
+				
+				for(int x=0;x<mutcount;x++)
+				{
+					if(temp.equals(muts[x]));
+						count++;
+				}
+				j++;
+				i++;	
+			}
+			
+			System.out.println(count);
+		}
+	}
+}
+			
+			
+		

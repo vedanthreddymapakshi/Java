@@ -1,0 +1,20 @@
+package fundango;
+import java.io.*;
+import java.util.*;
+
+public class main {
+	public static void main(String args[])
+	{
+		System.out.println("Welcome to Fundango");
+		Customers c=new Customers();
+		menu m=new menu();
+		Scanner in=new Scanner(System.in);
+		int choice=0;
+		
+		while(choice!=3)
+		{
+			m.mainMenu();
+			choice=in.nextInt();
+		}
+	}
+}

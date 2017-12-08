@@ -1,0 +1,222 @@
+package fundango;
+import java.sql.*;
+import java.util.Scanner;
+public class Customers 
+{
+	menu Menu = new menu();
+	Scanner in = new Scanner(System.in);
+	boolean admin = false;
+	
+	public void setAdmin(boolean a)//set during login, admin priv or not
+	{
+		admin = a;
+	}
+	public boolean adminCheck()
+	{
+		return admin;
+	}
+	
+	public void login() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
+	{
+		//connect to database & tables
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		String dbURL = "jdbc:mysql://104.197.183.40:3306/db35";
+		Connection conn = DriverManager.getConnection(dbURL, "user35", "4354");
+		//end db connection step
+				
+		Statement st = (Statement) conn.createStatement();
+		
+		String username, passwd;
+		boolean found = false;//flag if username/passwd exists
+		
+		do
+		{
+			System.out.println("Enter your username: ");
+			username = in.nextLine();
+			
+			System.out.println("Enter your password: ");
+			passwd = in.nextLine();
+			
+			ResultSet idCheck = st.executeQuery("SELECT * FROM customers WHERE username = '" + username + "' AND passwd = '" + passwd + "';");
+			
+			if (username.equals("admin") && passwd.equals("adminpass"))
+			{
+				System.out.println("Welcome to Fundango, " + idCheck.getString(3) + " " + idCheck.getString(4));
+				setAdmin(true);
+				found = true;
+			}
+			else if (username.equals(idCheck.getString(1)) && passwd.equals(idCheck.getString(2)))
+			{
+				System.out.println("Welcome to Fundango, " + idCheck.getString(3) + " " + idCheck.getString(4));
+				setAdmin(false);
+				found = true;
+			}
+			else
+			{
+				System.out.println("Username and/or password incorrect!");
+				
+			}
+		}while (!found);
+		
+		conn.close();
+		
+	}//end log in
+	
+	public void newAcc() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
+	{
+		//connect to database & tables
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		String dbURL = "jdbc:mysql://104.197.183.40:3306/db35";
+		Connection conn = DriverManager.getConnection(dbURL, "user35", "4354");
+		//end db connection step
+				
+		Statement st = (Statement) conn.createStatement();
+		
+		String username, passwd, passConfirm, firstN, lastN, email;
+		boolean passcheck = false;
+		
+		System.out.println("Enter your desired username: ");
+		username = in.nextLine();
+		
+		do
+		{
+			System.out.println("Enter your password: ");
+			passwd = in.nextLine();
+			System.out.println("Reenter your password: ");
+			passConfirm = in.nextLine();
+			if (passwd.equals(passConfirm))
+				passcheck = true;
+			else
+				System.out.println("Passwords don't match!");
+			
+		}while (!passcheck);
+		
+		System.out.println("Enter your first name: ");
+		firstN = in.nextLine();
+		
+		System.out.println("Enter your last name: ");
+		lastN = in.nextLine();
+		
+		System.out.println("Enter your email: ");
+		email = in.nextLine();
+		
+		st.executeUpdate("INSERT INTO customers VALUES ('" + username + "', '" + passwd + "', '" + firstN + "', '" + lastN + "', '" + email + "');");
+		System.out.println("Account created!");
+		conn.close();//close connection
+	}//end new acc method	
+	
+	public void dispCust() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
+	{
+//		//connect to database & tables
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		String dbURL = "jdbc:mysql://104.197.183.40:3306/db35";
+		Connection conn = DriverManager.getConnection(dbURL, "user35", "4354");
+		//end db connection step
+		
+		Statement st = (Statement) conn.createStatement();
+		
+		ResultSet rs = st.executeQuery("SELECT * FROM customers;");
+		
+		System.out.println("Username\tPassword\tFirst Name\tLast Name\tEmail");
+		System.out.println();
+		while (rs.next())
+		{
+			System.out.println(rs.getString(1) + "\t\t" + rs.getString(2) + "\t" + rs.getString(3) + "\t" + 
+								rs.getString(4) + "\t" + rs.getString(5));
+		}
+		conn.close();
+	}//end dispcust
+	
+	public void sortCust() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
+	{
+//		//connect to database & tables
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		String dbURL = "jdbc:mysql://104.197.183.40:3306/db35";
+		Connection conn = DriverManager.getConnection(dbURL, "user35", "4354");
+		//end db connection step
+		
+		Statement st = (Statement) conn.createStatement();
+		Menu.custSort();
+		int sortChoice = in.nextInt();//1 - username / 2 - password / 3 - fN / 4 - lN
+		if (sortChoice == 1)				//5 - email
+		{
+			ResultSet rs = st.executeQuery("SELECT * FROM customers ORDER BY username;" );
+			while(rs.next())
+			{
+				System.out.println(rs.getString(1) + "\t\t" + rs.getString(2) + "\t" + rs.getString(3) + "\t" + 
+						rs.getString(4) + "\t" + rs.getString(5));
+			}
+		}
+		else if (sortChoice == 2)
+		{
+			ResultSet rs = st.executeQuery("SELECT * FROM customers ORDER BY passwd;" );
+			while(rs.next())
+			{
+				System.out.println(rs.getString(1) + "\t\t" + rs.getString(2) + "\t" + rs.getString(3) + "\t" + 
+						rs.getString(4) + "\t" + rs.getString(5));
+			}	
+		}
+		else if (sortChoice == 3)
+		{
+			ResultSet rs = st.executeQuery("SELECT * FROM customers ORDER BY firstN;" );
+			while(rs.next())
+			{
+				System.out.println(rs.getString(1) + "\t\t" + rs.getString(2) + "\t" + rs.getString(3) + "\t" + 
+						rs.getString(4) + "\t" + rs.getString(5));
+			}	
+		}
+		else if (sortChoice == 4)
+		{
+			ResultSet rs = st.executeQuery("SELECT * FROM customers ORDER BY lastN;" );
+			while(rs.next())
+			{
+				System.out.println(rs.getString(1) + "\t\t" + rs.getString(2) + "\t" + rs.getString(3) + "\t" + 
+						rs.getString(4) + "\t" + rs.getString(5));
+			}	
+		}
+		else if (sortChoice == 5)
+		{
+			ResultSet rs = st.executeQuery("SELECT * FROM customers ORDER BY email;" );
+			while(rs.next())
+			{
+				System.out.println(rs.getString(1) + "\t\t" + rs.getString(2) + "\t" + rs.getString(3) + "\t" + 
+						rs.getString(4) + "\t" + rs.getString(5));
+			}	
+		}
+		else
+		{
+			System.out.println("Please select a number between 1 and 5");
+		}
+		conn.close();
+	}//end sort function
+	
+	public void updateCust() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
+	{
+//		//connect to database & tables
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		String dbURL = "jdbc:mysql://104.197.183.40:3306/db35";
+		Connection conn = DriverManager.getConnection(dbURL, "user35", "4354");
+		//end db connection step
+		
+		Statement st = (Statement) conn.createStatement();
+		
+		System.out.println("Enter username of customer you would like to update: ");
+		String username = in.nextLine();
+		
+		System.out.println("Enter field you would like to update: ");
+		String field = in.nextLine();
+		
+		System.out.println("Enter new " + field + ": ");
+		String updater = in.nextLine();
+		
+		st.executeUpdate("UPDATE customers SET " + field + " = " + updater + "WHERE username = '" + username + "';");
+		
+		System.out.println("Updated!");
+		
+		conn.close();
+		
+	}
+	
+
+}
+

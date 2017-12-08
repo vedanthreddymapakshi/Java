@@ -1,0 +1,81 @@
+package projectmain;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class startpage {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					startpage window = new startpage();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public startpage() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblWelcomeToFundangoo = new JLabel("WELCOME TO FUNDANGOO!");
+		lblWelcomeToFundangoo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
+		lblWelcomeToFundangoo.setBounds(65, 21, 299, 31);
+		frame.getContentPane().add(lblWelcomeToFundangoo);
+		
+		JButton btnLogin = new JButton("LOGIN");
+		btnLogin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				login l=new login();
+				l.loginpage();
+			}
+		});
+		btnLogin.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		btnLogin.setBounds(161, 89, 89, 23);
+		frame.getContentPane().add(btnLogin);
+		
+		JButton btnRegister = new JButton("Register");
+		btnRegister.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Register r=new Register();
+				r.registerme();
+			}
+		});
+		btnRegister.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		btnRegister.setBounds(161, 133, 89, 23);
+		frame.getContentPane().add(btnRegister);
+		
+		JButton btnContinueAsGuest = new JButton("Continue as Guest");
+		btnContinueAsGuest.setBounds(128, 188, 154, 23);
+		frame.getContentPane().add(btnContinueAsGuest);
+	}
+}

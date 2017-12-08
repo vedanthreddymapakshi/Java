@@ -1,0 +1,10 @@
+package testing;
+
+public class tt {
+	public static void main(String args[])
+	{
+		c=2%1;
+		System.out.println(c);
+	}
+
+}

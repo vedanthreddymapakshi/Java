@@ -1,0 +1,19 @@
+package testing;
+
+public class tt {
+	public static void main(String args[])
+	{
+		int x=11;
+		while(x>0)
+		{
+			if(x%2==0||x%3==0)
+				System.out.print(x);
+			else if(x%5==0)
+				System.out.println();
+			x-=3;
+		}
+		
+		System.out.println(" !");
+	}
+		
+}

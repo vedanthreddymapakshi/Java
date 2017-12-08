@@ -1,0 +1,23 @@
+package testing;
+import java.util.*;
+
+public class tt {
+	public static void main(String args[])
+	{
+		double avg=0;
+		int c=0;
+		for(int i=0;i<5;i++)
+		{
+			Scanner in=new Scanner(System.in);
+			double n=in.nextDouble();
+			c++;
+			
+			
+			avg+=n;
+			avg=avg/c-1;
+			System.out.println(avg);
+			
+		}
+	}
+		
+}

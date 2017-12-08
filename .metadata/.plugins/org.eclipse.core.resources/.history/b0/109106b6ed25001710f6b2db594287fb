@@ -1,0 +1,81 @@
+package project;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JTextField;
+import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+
+public class proj2 {
+
+	private JFrame frame;
+	private JTable table;
+	private JTextField txtMovies;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void screen2() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					proj2 window = new proj2();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public proj2() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setLayout(null);
+		
+		table = new JTable();
+		table.setBounds(178, 11, 246, 239);
+		frame.getContentPane().add(table);
+		
+		txtMovies = new JTextField();
+		txtMovies.setBackground(Color.LIGHT_GRAY);
+		txtMovies.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		txtMovies.setHorizontalAlignment(SwingConstants.CENTER);
+		txtMovies.setText("MOVIES");
+		txtMovies.setBounds(37, 11, 86, 20);
+		frame.getContentPane().add(txtMovies);
+		txtMovies.setColumns(10);
+		
+		JButton button1 = new JButton("DISPLAY MOVIES");
+		button1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		button1.setBounds(10, 89, 158, 23);
+		frame.getContentPane().add(button1);
+		
+		JButton button2 = new JButton("SORT BY TITLE");
+		button2.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		button2.setBounds(10, 139, 158, 23);
+		frame.getContentPane().add(button2);
+		
+		JButton button3 = new JButton("SORT BY DATE");
+		button3.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		button3.setBounds(10, 191, 158, 23);
+		frame.getContentPane().add(button3);
+	}
+}

@@ -1,0 +1,14 @@
+package testing;
+import java.util.*;
+
+public class tt {
+	public static void main(String args[])
+	{
+		int x=5;
+		int y=6;
+		int c;
+		c=++y*x/y+y;
+		System.out.println(c);
+	}
+		
+}

@@ -1,0 +1,63 @@
+package hw5;
+
+import java.sql.*;
+
+public class CarInventory
+{
+	public CarInventory()
+	{
+		
+	}
+	public Object[][] getTable0(String vin,String brand, String model, String year, String mileage, String price, String colour) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
+	{
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		String addr="104.197.183.40:3306/db24";
+		String s1="jdbc:mysql://"+addr;
+		Connection connection=DriverManager.getConnection(s1,"user24","9494");
+		Statement statement=connection.createStatement();
+		ResultSet rs = statement.executeQuery("select * from cars where vin is null or vin='"+vin+"'"+" and brand='"+brand+"'"+" and model='"+model+
+				"'"+ " and year='"+ year+"'"+" and mileage='"+mileage+" and price='"+price+"'"+" and colour='"+colour+"'");
+
+		Object[][] data = new Object[100][7];
+		int count=0;
+		while(rs.next())
+		{
+			data[count][0] = rs.getString("vin");
+			data[count][1] = rs.getString("brand");
+			data[count][2] = rs.getString("model");
+			data[count][3] = rs.getInt("year");
+			data[count][4] = rs.getInt("mileage");
+			data[count][5] = rs.getInt("price");
+			data[count][6] = rs.getString("colour");
+			count++;
+		}
+		connection.close();
+		return data;
+	}
+	
+	public Object[][] getTable1() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
+	{
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		String addr="104.197.183.40:3306/db24";
+		String s1="jdbc:mysql://"+addr;
+		Connection connection=DriverManager.getConnection(s1,"user24","9494");
+		Statement statement=connection.createStatement();		
+		ResultSet rs = statement.executeQuery("select * from cars where brand='Honda'"); // This is an example. 
+
+		Object[][] data = new Object[100][7];
+		int count=0;
+		while(rs.next())
+		{
+			data[count][0] = rs.getString("vin");
+			data[count][1] = rs.getString("brand");
+			data[count][2] = rs.getString("model");
+			data[count][3] = rs.getInt("year");
+			data[count][4] = rs.getInt("mileage");
+			data[count][5] = rs.getInt("price");
+			data[count][6] = rs.getString("colour");
+			count++;
+		}
+		connection.close();
+		return data;
+	}
+}

@@ -1,0 +1,12 @@
+package testing;
+
+public class tt {
+	public static void main(String args[])
+	{
+		String a="Hello";
+		String ab="hello";
+		if(a!=ab)
+			System.out.println("0");
+	}
+
+}

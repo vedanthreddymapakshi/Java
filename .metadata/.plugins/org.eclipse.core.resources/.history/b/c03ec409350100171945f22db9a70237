@@ -1,0 +1,19 @@
+package testing;
+
+public class tt {
+	public static void main(String args[])
+	{
+		double x=9;
+		double y=8;
+		double z=7;
+		
+		if(x>9)
+			if(y>8)
+				System.out.println("a");
+		else if(z>=7)
+			System.out.println("b");
+		else
+			System.out.println("c");
+		
+	}
+}

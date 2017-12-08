@@ -1,0 +1,21 @@
+package testing;
+import java.util.*;
+
+public class tt {
+	public static void main(String args[])
+	{
+		int n=1;
+		int count=0;
+		while(n>0)
+		{
+			Scanner in=new Scanner(System.in);
+			n=in.nextInt();
+			
+			if(n%2!=0)
+				count++;
+		}
+		
+		System.out.println(count);
+	}
+		
+}
